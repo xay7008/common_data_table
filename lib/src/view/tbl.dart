@@ -115,7 +115,7 @@ class _TblState extends State<Tbl> {
 
   List<List<String>> _data = [];
 
-  int _limit = 10, _from = 0, _page = 1, _sorting = -1;
+  int _limit = 50, _from = 0, _page = 1, _sorting = -1;
   bool _isSortAsc = false;
   final List<int> _limitList = [10, 50, 100, 200];
 
@@ -440,7 +440,7 @@ class _TblState extends State<Tbl> {
         ): () {
           max = [2, 3, 4, 5];
           _data = widget.data;
-          _limit = 10;
+          _limit = 50;
           _from = 0;
           _page = 1;
           _sorting = -1;
@@ -523,117 +523,6 @@ class _TblState extends State<Tbl> {
         autofocus: true,
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(
-                left: widget.margin,
-                right: widget.margin,
-                top: widget.margin,
-              ),
-              decoration: BoxDecoration(
-                color: widget.titleBgColor,
-                border: Border.all(),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-              ),
-              padding: EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text(
-                    widget.title ?? "",
-                    style: widget.titleStyle ??
-                        TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                  ),
-                  Spacer(),
-                  for (TableActionButton tblAction
-                      in widget.tableActionButtons) ...[
-                    tblAction.icon == null
-                        ? FilledButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(tblAction.bgColor),
-                              foregroundColor:
-                                  MaterialStatePropertyAll(tblAction.fgColor),
-                            ),
-                            onPressed: tblAction.onTap,
-                            child: tblAction.child,
-                          )
-                        : FilledButton.icon(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(tblAction.bgColor),
-                              foregroundColor:
-                                  MaterialStatePropertyAll(tblAction.fgColor),
-                            ),
-                            onPressed: tblAction.onTap,
-                            icon: tblAction.icon!,
-                            label: tblAction.child,
-                          ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                  if (widget.onExportExcel != null) ...[
-                    FilledButton.icon(
-                      onPressed: () async {
-                        File excel = await exportToExcel(
-                          data: _data,
-                          heading: widget.heading,
-                        );
-                        widget.onExportExcel!(excel);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.green),
-                      ),
-                      icon: Icon(
-                        FontAwesomeIcons.fileExcel,
-                        size: 20,
-                      ),
-                      label: Text(
-                        "Export to Excel",
-                      ),
-                    ),
-                  ],
-                  if (widget.onExportPDF != null) ...[
-                    SizedBox(
-                      width: 10,
-                    ),
-                    FilledButton.icon(
-                      onPressed: () async {
-                        File pdf = await exportToPdf(
-                          data: _data,
-                          heading: widget.heading,
-                        );
-                        widget.onExportPDF!(pdf);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.red),
-                      ),
-                      icon: Icon(
-                        FontAwesomeIcons.filePdf,
-                        size: 20,
-                      ),
-                      label: Text(
-                        "Export to PDF",
-                      ),
-                    ),
-                  ],
-                  IconButton(
-                    onPressed: _openHelp,
-                    color: Colors.blue,
-                    iconSize: 25,
-                    tooltip: "Table Shortcut Key",
-                    icon: Icon(
-                      FontAwesomeIcons.solidCircleQuestion,
-                    ),
-                  )
-                ],
-              ),
-            ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(
@@ -646,6 +535,8 @@ class _TblState extends State<Tbl> {
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                    topLeft: Radius.circular(10),
                   ),
                 ),
                 padding: EdgeInsets.all(10),

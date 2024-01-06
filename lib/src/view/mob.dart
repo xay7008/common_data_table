@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 import '../../common_data_table.dart';
@@ -62,12 +63,13 @@ class Mob extends StatefulWidget {
   final List<TableActionButton> tableActionButtons;
   final Map<int, TextStyle>? Function(List<String> row)? dataTextStyle;
   final Map<int, TextStyle> headingTextStyle;
-  final bool isSearchAble;
+  final bool isSearchAble,isTitleEdit;
   final List<int> disabledDeleteButtons, disabledEditButtons;
 
   const Mob({
     super.key,
     this.title,
+    required this.isTitleEdit,
     this.titleBgColor,
     this.titleStyle,
     required this.heading,
@@ -219,6 +221,9 @@ class _MobState extends State<Mob> {
                     fontWeight: FontWeight.bold,
                   ),
             ),
+            trailing: widget.isTitleEdit?IconButton(onPressed: () {
+              widget.onEdit!(_data.indexOf(data));
+            }, icon: Icon(EvaIcons.edit2Outline),):null,
             children: [
               for (String da in data) ...[
                 if (data.indexOf(da) > 0)

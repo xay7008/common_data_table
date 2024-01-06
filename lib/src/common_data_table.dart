@@ -65,7 +65,7 @@ class CommonDataTable extends StatelessWidget {
   final Map<int, TblAlign> dataAlign, headingAlign;
   final Map<int, TextStyle>? Function(List<String> row)? dataTextStyle;
   final Map<int, TextStyle> headingTextStyle;
-  final bool isSearchAble;
+  final bool isSearchAble,isTitleEdit;
   final List<int> disabledDeleteButtons, disabledEditButtons, sortColumn;
 
   final double margin;
@@ -85,6 +85,7 @@ class CommonDataTable extends StatelessWidget {
     this.headingTextStyle = const {},
     this.onEdit,
     this.isSearchAble = false,
+    this.isTitleEdit = false,
     this.onDelete,
     this.onExportExcel,
     this.onExportPDF,
@@ -127,6 +128,7 @@ class CommonDataTable extends StatelessWidget {
         } else {
           return Mob(
             title: title,
+            isTitleEdit:isTitleEdit,
             dataTextStyle: dataTextStyle,
             rowBGColor: rowBGColor,
             key: key,
