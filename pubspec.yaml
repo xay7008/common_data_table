@@ -15,8 +15,8 @@ dependencies:
 
   font_awesome_flutter: ^10.6.0
   eva_icons_flutter: ^3.1.0
-  syncfusion_flutter_pdf: ^24.1.44
-  syncfusion_flutter_xlsio: ^24.1.44
+  syncfusion_flutter_pdf: 25.1.38
+  syncfusion_flutter_xlsio: 25.1.38
   path_provider: ^2.1.1
   visibility_detector: ^0.4.0+2
 
